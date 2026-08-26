@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-bg text-ink font-body antialiased;
+  }
+
+  h1, h2, h3, .font-display {
+    font-family: theme('fontFamily.display');
+    @apply tracking-tight;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center gap-2 rounded-xl px-4 py-3 text-sm font-semibold transition;
+  }
+  .btn-grad {
+    @apply bg-brand-gradient text-ink;
+  }
+  .btn-grad:hover {
+    filter: brightness(1.06);
+  }
+  .btn-outline {
+    @apply bg-white text-ink border border-line;
+  }
+  .btn-outline:hover {
+    @apply border-cyan;
+  }
+  .card {
+    @apply bg-white border border-line rounded-card p-4 transition;
+  }
+  .card:hover {
+    box-shadow: 0 0 0 1.5px #1CDFE8, 0 8px 24px -12px rgba(20, 22, 28, 0.15);
+    border-color: transparent;
+  }
+  .badge {
+    @apply inline-flex items-center text-[11px] font-semibold px-2.5 py-1 rounded-full bg-brand-gradient-soft text-ink w-fit;
+  }
+
+  /* Renderizado del contenido creado con el editor enriquecido (admin)
+     en el sitio público: Unidad.introduccion, Novedad.descripcion,
+     Programa.presentacion. */
+  .prose-content p { @apply mb-2 leading-relaxed; }
+  .prose-content h2 { @apply text-xl font-display font-semibold mt-5 mb-2; }
+  .prose-content h3 { @apply text-base font-display font-semibold mt-4 mb-2; }
+  .prose-content blockquote { @apply border-l-[3px] border-cyan pl-4 text-ink-soft my-3; }
+  .prose-content ul, .prose-content ol { @apply pl-6 my-2; }
+  .prose-content a { @apply text-pink underline; }
+  .prose-content hr { @apply border-0 border-t border-line my-4; }
+  .prose-content table { @apply border-collapse w-full my-3 text-sm; }
+  .prose-content th, .prose-content td { @apply border border-line px-3 py-2 text-left; }
+  .prose-content th { @apply bg-brand-gradient-soft font-semibold; }
+  .prose-content .callout { @apply bg-brand-gradient-soft border-l-[3px] border-pink rounded-xl px-4 py-3 my-3; }
+  .prose-content .video-embed { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; margin: .75rem 0; }
+  .prose-content .video-embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .prose-content img { @apply max-w-full rounded-xl my-2; }
+}
