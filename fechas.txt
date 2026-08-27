@@ -1,0 +1,9 @@
+src/admin/pages/NovedadesAdmin.tsx:43:        fecha: new Date().toISOString().slice(0, 10),
+src/admin/pages/CalendarioAdmin.tsx:58:        fecha: new Date().toISOString().slice(0, 10),
+src/pages/Home.tsx:20:      const hoy = new Date().toISOString().slice(0, 10);
+src/pages/Home.tsx:76:                    {new Date(e.fecha + 'T00:00:00').getDate()}
+src/pages/Home.tsx:79:                    {new Intl.DateTimeFormat('es-AR', { month: 'short' }).format(new Date(e.fecha + 'T00:00:00'))}
+src/pages/CalendarioPage.tsx:16:  const date = new Date(iso + 'T00:00:00');
+src/pages/CalendarioPage.tsx:27:  const hoy = new Date().toISOString().slice(0, 10);
+src/pages/CalendarioPage.tsx:50:                  {new Date(e.fecha + 'T00:00:00').getDate()}
+src/pages/CalendarioPage.tsx:53:                  {new Intl.DateTimeFormat('es-AR', { month: 'short' }).format(new Date(e.fecha + 'T00:00:00'))}
