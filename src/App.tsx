@@ -8,8 +8,6 @@ import Bibliografia from '@/pages/Bibliografia';
 import Material from '@/pages/Material';
 import Sitios from '@/pages/Sitios';
 import Novedades from '@/pages/Novedades';
-import TriviaHome from '@/pages/TriviaHome';
-import TriviaJugar from '@/pages/TriviaJugar';
 import CalendarioPage from '@/pages/CalendarioPage';
 import NotFound from '@/pages/NotFound';
 
@@ -22,8 +20,6 @@ import ProgramaAdmin from '@/admin/pages/ProgramaAdmin';
 import CalendarioAdmin from '@/admin/pages/CalendarioAdmin';
 import BibliografiaAdmin from '@/admin/pages/BibliografiaAdmin';
 import MaterialAdmin from '@/admin/pages/MaterialAdmin';
-import TriviasAdmin from '@/admin/pages/TriviasAdmin';
-import PreguntasAdmin from '@/admin/pages/PreguntasAdmin';
 import NovedadesAdmin from '@/admin/pages/NovedadesAdmin';
 import EnlacesAdmin from '@/admin/pages/EnlacesAdmin';
 import MenuAdmin from '@/admin/pages/MenuAdmin';
@@ -46,8 +42,6 @@ export default function App() {
         <Route path="/material" element={<Material />} />
         <Route path="/sitios" element={<Sitios />} />
         <Route path="/novedades" element={<Novedades />} />
-        <Route path="/trivia" element={<TriviaHome />} />
-        <Route path="/trivia/:id" element={<TriviaJugar />} />
         <Route path="/calendario" element={<CalendarioPage />} />
         <Route path="*" element={<NotFound />} />
       </Route>
@@ -62,8 +56,6 @@ export default function App() {
           <Route path="calendario" element={<CalendarioAdmin />} />
           <Route path="bibliografia" element={<BibliografiaAdmin />} />
           <Route path="material" element={<MaterialAdmin />} />
-          <Route path="trivias" element={<TriviasAdmin />} />
-          <Route path="preguntas" element={<PreguntasAdmin />} />
           <Route path="novedades" element={<NovedadesAdmin />} />
           <Route path="enlaces" element={<EnlacesAdmin />} />
           <Route path="menu" element={<MenuAdmin />} />

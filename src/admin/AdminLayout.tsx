@@ -15,13 +15,6 @@ const NAV_GROUPS: { label: string; items: { to: string; label: string }[] }[] = 
     ],
   },
   {
-    label: 'Trivia',
-    items: [
-      { to: '/admin/trivias', label: 'Trivias' },
-      { to: '/admin/preguntas', label: 'Banco de preguntas' },
-    ],
-  },
-  {
     label: 'Comunicación',
     items: [
       { to: '/admin/novedades', label: 'Novedades' },
