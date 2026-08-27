@@ -123,7 +123,7 @@ export function FormField<T>({ field, value, onChange }: Props<T>) {
       return wrapper(
         <select
           value={value ?? ''}
-          onChange={(e) => onChange(Number(e.target.value))}
+          onChange={(e) => onChange(e.target.value === '' ? null : Number(e.target.value))}
           className="w-full px-3.5 py-2.5 rounded-xl border border-line text-sm outline-none focus:border-cyan bg-white"
         >
           <option value="">— Seleccionar unidad —</option>
