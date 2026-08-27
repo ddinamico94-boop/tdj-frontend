@@ -68,7 +68,7 @@ export function FormField<T>({ field, value, onChange }: Props<T>) {
       return wrapper(
         <input
           type="date"
-          value={value ?? ''}
+          value={typeof value === 'string' ? value.slice(0, 10) : ''}
           onChange={(e) => onChange(e.target.value)}
           className="w-full px-3.5 py-2.5 rounded-xl border border-line text-sm outline-none focus:border-cyan"
         />
