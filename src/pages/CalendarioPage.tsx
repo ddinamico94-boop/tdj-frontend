@@ -12,8 +12,20 @@ const TIPO_LABEL: Record<TipoEvento, string> = {
   otro: 'Otro',
 };
 
-function formatFecha(iso: string) {
-  const date = new Date(iso + 'T00:00:00');
+// Devuelve un Date válido a partir de "YYYY-MM-DD", o null si la fecha no
+// existe o es inválida. Evita "RangeError: Invalid time value" que rompía
+// el render y dejaba la página en blanco cuando algún evento venía sin
+// fecha (o con formato incorrecto) desde el panel administrativo.
+function parseFechaSegura(fecha: string | null | undefined): Date | null {
+  if (!fecha) return null;
+  const date = new Date(fecha + 'T00:00:00');
+  if (isNaN(date.getTime())) return null;
+  return date;
+}
+
+function formatFecha(iso: string | null | undefined): string {
+  const date = parseFechaSegura(iso);
+  if (!date) return 'Fecha a confirmar';
   return new Intl.DateTimeFormat('es-AR', { day: 'numeric', month: 'long', year: 'numeric' }).format(date);
 }
 
@@ -39,7 +51,9 @@ export default function CalendarioPage() {
 
       <div className="space-y-3">
         {eventos.map((e) => {
-          const esProximo = e.fecha >= hoy;
+          const fechaValida = parseFechaSegura(e.fecha);
+          const esProximo = !!e.fecha && e.fecha >= hoy;
+
           return (
             <div
               key={e.id}
@@ -47,10 +61,10 @@ export default function CalendarioPage() {
             >
               <div className="shrink-0 w-16 text-center">
                 <div className="text-2xl font-display font-semibold leading-none">
-                  {new Date(e.fecha + 'T00:00:00').getDate()}
+                  {fechaValida ? fechaValida.getDate() : '–'}
                 </div>
                 <div className="text-[11px] uppercase text-ink-soft font-semibold mt-1">
-                  {new Intl.DateTimeFormat('es-AR', { month: 'short' }).format(new Date(e.fecha + 'T00:00:00'))}
+                  {fechaValida ? new Intl.DateTimeFormat('es-AR', { month: 'short' }).format(fechaValida) : ''}
                 </div>
               </div>
               <div className="flex-1">

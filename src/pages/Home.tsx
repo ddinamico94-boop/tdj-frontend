@@ -4,6 +4,16 @@ import { contentService } from '@/services/contentService';
 import type { Novedad, EnlaceEditable, SiteConfig, ItemMenu, EventoCalendario } from '@/types';
 import { SectionHead } from '@/components/Common';
 
+// Devuelve un objeto Date válido a partir de "YYYY-MM-DD", o null si la fecha
+// no existe o tiene un formato inválido. Evita que Intl.DateTimeFormat / Date
+// exploten con "RangeError: Invalid time value" y dejen la página en blanco.
+function parseFechaSegura(fecha: string | null | undefined): Date | null {
+  if (!fecha) return null;
+  const d = new Date(fecha + 'T00:00:00');
+  if (isNaN(d.getTime())) return null;
+  return d;
+}
+
 export default function Home() {
   const [site, setSite] = useState<SiteConfig | null>(null);
   const [menu, setMenu] = useState<ItemMenu[]>([]);
@@ -18,7 +28,11 @@ export default function Home() {
     contentService.getSitiosImportantes().then(setSitios);
     contentService.getCalendario().then((eventos) => {
       const hoy = new Date().toISOString().slice(0, 10);
-      setProximasFechas(eventos.filter((e) => e.fecha >= hoy).slice(0, 3));
+      setProximasFechas(
+        eventos
+          .filter((e) => !!e.fecha && e.fecha >= hoy)
+          .slice(0, 3)
+      );
     });
   }, []);
 
@@ -69,19 +83,23 @@ export default function Home() {
         <>
           <SectionHead title="Próximas fechas" seeAllTo="/calendario" />
           <div className="grid md:grid-cols-3 gap-3.5 mb-10">
-            {proximasFechas.map((e) => (
-              <Link key={e.id} to="/calendario" className="card flex items-center gap-3.5">
-                <div className="shrink-0 w-12 text-center">
-                  <div className="text-xl font-display font-semibold leading-none">
-                    {new Date(e.fecha + 'T00:00:00').getDate()}
+            {proximasFechas.map((e) => {
+              const fechaValida = parseFechaSegura(e.fecha);
+              if (!fechaValida) return null;
+              return (
+                <Link key={e.id} to="/calendario" className="card flex items-center gap-3.5">
+                  <div className="shrink-0 w-12 text-center">
+                    <div className="text-xl font-display font-semibold leading-none">
+                      {fechaValida.getDate()}
+                    </div>
+                    <div className="text-[10px] uppercase text-ink-soft font-semibold mt-0.5">
+                      {new Intl.DateTimeFormat('es-AR', { month: 'short' }).format(fechaValida)}
+                    </div>
                   </div>
-                  <div className="text-[10px] uppercase text-ink-soft font-semibold mt-0.5">
-                    {new Intl.DateTimeFormat('es-AR', { month: 'short' }).format(new Date(e.fecha + 'T00:00:00'))}
-                  </div>
-                </div>
-                <span className="text-[13.5px] font-medium">{e.titulo}</span>
-              </Link>
-            ))}
+                  <span className="text-[13.5px] font-medium">{e.titulo}</span>
+                </Link>
+              );
+            })}
           </div>
         </>
       )}
