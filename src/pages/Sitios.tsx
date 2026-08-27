@@ -23,8 +23,16 @@ export default function Sitios() {
             rel="noreferrer"
             className="flex items-center gap-3.5 bg-white border border-line rounded-2xl px-4 py-3.5"
           >
-            <div className="w-11 h-11 rounded-[11px] bg-brand-gradient flex items-center justify-center font-bold text-[15px] text-ink shrink-0">
-              {s.icono}
+            <div className="w-11 h-11 rounded-[11px] bg-brand-gradient flex items-center justify-center font-bold text-[15px] text-ink shrink-0 overflow-hidden">
+              {s.logoUrl ? (
+                <img
+                  src={s.logoUrl}
+                  alt={s.nombre}
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                s.icono
+              )}
             </div>
             <div>
               <b className="text-[14.5px] block">{s.nombre}</b>
