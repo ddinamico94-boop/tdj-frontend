@@ -10,15 +10,14 @@ export const menu: ItemMenu[] = [
   { id: 'calendario', label: 'Calendario', to: '/calendario', orden: 3, visible: true },
   { id: 'bibliografia', label: 'Bibliografía', to: '/bibliografia', orden: 4, visible: true },
   { id: 'material', label: 'Material', to: '/material', orden: 5, visible: true },
-  { id: 'trivia', label: 'Trivia', to: '/trivia', orden: 6, visible: true },
-  { id: 'novedades', label: 'Novedades', to: '/novedades', orden: 7, visible: true },
-  { id: 'sitios', label: 'Sitios importantes', to: '/sitios', orden: 8, visible: true },
+  { id: 'novedades', label: 'Novedades', to: '/novedades', orden: 6, visible: true },
+  { id: 'sitios', label: 'Sitios importantes', to: '/sitios', orden: 7, visible: true },
 ];
 
 export const siteConfig: SiteConfig = {
   nombre: 'Teoría del Derecho y la Justicia B',
   bienvenida:
-    'Todo el contenido de la cátedra — unidades, bibliografía, material de estudio y trivias — en un solo lugar.',
+    'Todo el contenido de la cátedra — unidades, bibliografía y material de estudio — en un solo lugar.',
   footerTexto: 'Plataforma académica de la cátedra. Contenido gestionado desde el panel administrativo.',
   redesSociales: [
     { id: 'instagram', plataforma: 'instagram', url: '#', activo: false },
@@ -35,5 +34,5 @@ export const configuracionVisual: ConfiguracionVisual = {
 export const configuracionSEO: ConfiguracionSEO = {
   nombreSitio: 'Teoría del Derecho y la Justicia B',
   tituloSEO: 'Teoría del Derecho y la Justicia B — Plataforma académica',
-  descripcion: 'Unidades, programa, bibliografía, material de estudio y trivias de la cátedra.',
+  descripcion: 'Unidades, programa, bibliografía y material de estudio de la cátedra.',
 };
