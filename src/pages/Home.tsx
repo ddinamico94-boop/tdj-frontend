@@ -58,9 +58,6 @@ export default function Home() {
             <Link to="/unidades" className="btn btn-grad">
               Ver unidades →
             </Link>
-            <Link to="/trivia" className="btn bg-white/10 text-white border border-white/20 hover:bg-white/15">
-              Jugar trivia
-            </Link>
           </div>
         </div>
       </section>
